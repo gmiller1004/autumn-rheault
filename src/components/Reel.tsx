@@ -21,8 +21,8 @@ export function Reel() {
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
           {showReel
-            ? "A showcase of acting, singing, and dance from recent performances."
-            : "A showcase of acting, singing, and dance. Updated reel coming soon."}
+            ? "Acting, voice, and dance highlights from recent productions."
+            : "Acting, voice, and dance highlights. Contact booking for current footage."}
         </p>
         <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
           {videoUrl ? (
@@ -62,11 +62,10 @@ export function Reel() {
                 </svg>
               </div>
               <p className="font-serif text-2xl font-medium text-foreground">
-                Demo reel coming soon
+                Demo reel unavailable
               </p>
               <p className="max-w-sm text-sm text-muted">
-                Check back for clips from recent performances, or contact us for
-                current materials.
+                Contact {site.email} for current performance footage.
               </p>
             </div>
           )}

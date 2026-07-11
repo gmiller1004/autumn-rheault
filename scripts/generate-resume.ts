@@ -6,6 +6,7 @@ import { site } from "../src/lib/site";
 type PDFDoc = InstanceType<typeof PDFDocument>;
 
 const OUTPUT = path.join(process.cwd(), "public", "resume.pdf");
+const HEADSHOT = path.join(process.cwd(), "public", "headshot.jpg");
 
 const colors = {
   accent: "#7c2d36",
@@ -14,20 +15,44 @@ const colors = {
   border: "#e7e0d6",
 };
 
+const layout = {
+  headshotWidth: 108,
+  headshotHeight: 135,
+  headshotGap: 18,
+  sectionGap: 0.45,
+  rowGap: 7,
+};
+
+function pageWidth(doc: PDFDoc) {
+  return doc.page.width - doc.page.margins.left - doc.page.margins.right;
+}
+
+function pageRight(doc: PDFDoc) {
+  return doc.page.width - doc.page.margins.right;
+}
+
 function sectionHeading(doc: PDFDoc, title: string) {
-  doc.moveDown(0.6);
+  doc.moveDown(layout.sectionGap);
+  const left = doc.page.margins.left;
+  const right = pageRight(doc);
+
   doc
     .font("Helvetica-Bold")
-    .fontSize(9)
+    .fontSize(8.5)
     .fillColor(colors.accent)
-    .text(title.toUpperCase(), { characterSpacing: 1.2 });
+    .text(title.toUpperCase(), left, doc.y, {
+      characterSpacing: 0.6,
+      width: pageWidth(doc),
+    });
+
   doc
-    .moveTo(doc.page.margins.left, doc.y + 4)
-    .lineTo(doc.page.width - doc.page.margins.right, doc.y + 4)
+    .moveTo(left, doc.y + 3)
+    .lineTo(right, doc.y + 3)
     .strokeColor(colors.border)
-    .lineWidth(1)
+    .lineWidth(0.75)
     .stroke();
-  doc.moveDown(0.5);
+
+  doc.moveDown(0.35);
 }
 
 function educationEntry(
@@ -37,50 +62,78 @@ function educationEntry(
   bullets: string[],
 ) {
   const left = doc.page.margins.left;
-  const right = doc.page.width - doc.page.margins.right;
+  const width = pageWidth(doc);
   const y = doc.y;
 
-  doc.font("Helvetica-Bold").fontSize(10).fillColor(colors.foreground);
-  doc.text(institution, left, y, { width: right - left - 120, continued: false });
+  doc.font("Helvetica-Bold").fontSize(9.5).fillColor(colors.foreground);
+  doc.text(institution, left, y, { width: width - 108 });
 
-  doc.font("Helvetica").fontSize(9).fillColor(colors.muted);
-  doc.text(period, left, y, { width: right - left, align: "right" });
+  doc.font("Helvetica").fontSize(8.5).fillColor(colors.muted);
+  doc.text(period, left, y, { width, align: "right" });
 
-  doc.moveDown(0.15);
+  doc.moveDown(0.12);
   for (const bullet of bullets) {
     doc
       .font("Helvetica")
-      .fontSize(9.5)
+      .fontSize(9)
       .fillColor(colors.foreground)
-      .text(`• ${bullet}`, { indent: 8, lineGap: 2 });
+      .text(`• ${bullet}`, left + 6, doc.y, {
+        width: width - 6,
+        lineGap: 1,
+      });
   }
-  doc.moveDown(0.35);
+  doc.moveDown(0.28);
 }
 
-function creditRow(
-  doc: PDFDoc,
-  show: string,
-  role: string,
-  when: string,
-) {
+function theatreTableHeader(doc: PDFDoc) {
   const left = doc.page.margins.left;
-  const right = doc.page.width - doc.page.margins.right;
+  const showW = 168;
+  const roleX = left + showW + 10;
+  const roleW = 244;
+  const dateW = 82;
   const y = doc.y;
-  const showWidth = 170;
-  const dateWidth = 90;
 
-  doc.font("Helvetica-Bold").fontSize(9.5).fillColor(colors.foreground);
-  doc.text(show, left, y, { width: showWidth });
-
-  doc.font("Helvetica").fontSize(9.5).fillColor(colors.foreground);
-  doc.text(role, left + showWidth, y, {
-    width: right - left - showWidth - dateWidth,
+  doc.font("Helvetica-Bold").fontSize(7.5).fillColor(colors.muted);
+  doc.text("SHOW", left, y, { width: showW, characterSpacing: 0.8 });
+  doc.text("ROLE", roleX, y, { width: roleW, characterSpacing: 0.8 });
+  doc.text("DATE", pageRight(doc) - dateW, y, {
+    width: dateW,
+    align: "right",
+    characterSpacing: 0.8,
   });
 
-  doc.font("Helvetica").fontSize(9).fillColor(colors.muted);
-  doc.text(when, left, y, { width: right - left, align: "right" });
+  doc.moveDown(0.22);
+}
 
-  doc.moveDown(0.45);
+function creditRow(doc: PDFDoc, show: string, role: string, when: string) {
+  const left = doc.page.margins.left;
+  const showW = 168;
+  const roleX = left + showW + 10;
+  const roleW = 244;
+  const dateW = 82;
+  const y = doc.y;
+
+  doc.font("Helvetica-Bold").fontSize(9);
+  const showHeight = doc.heightOfString(show, { width: showW });
+
+  doc.font("Helvetica").fontSize(9);
+  const roleHeight = doc.heightOfString(role, { width: roleW });
+
+  const rowHeight = Math.max(showHeight, roleHeight, 11);
+
+  doc.font("Helvetica-Bold").fontSize(9).fillColor(colors.foreground);
+  doc.text(show, left, y, { width: showW, lineGap: 0.5 });
+
+  doc.font("Helvetica").fontSize(9).fillColor(colors.foreground);
+  doc.text(role, roleX, y, { width: roleW, lineGap: 0.5 });
+
+  doc.font("Helvetica").fontSize(8.5).fillColor(colors.muted);
+  doc.text(when, pageRight(doc) - dateW, y, {
+    width: dateW,
+    align: "right",
+  });
+
+  doc.y = y + rowHeight + layout.rowGap;
 }
 
 function parseEducation(detail: string) {
@@ -88,50 +141,95 @@ function parseEducation(detail: string) {
   return { period: period ?? detail, bullets: rest.length ? rest : [detail] };
 }
 
+function drawHeader(doc: PDFDoc) {
+  const left = doc.page.margins.left;
+  const top = doc.page.margins.top;
+  const textWidth =
+    pageWidth(doc) - layout.headshotWidth - layout.headshotGap;
+  const headshotX = pageRight(doc) - layout.headshotWidth;
+
+  if (fs.existsSync(HEADSHOT)) {
+    doc
+      .save()
+      .roundedRect(
+        headshotX - 1,
+        top - 1,
+        layout.headshotWidth + 2,
+        layout.headshotHeight + 2,
+        4,
+      )
+      .strokeColor(colors.border)
+      .lineWidth(0.75)
+      .stroke()
+      .restore();
+
+    doc.save();
+    doc
+      .roundedRect(headshotX, top, layout.headshotWidth, layout.headshotHeight, 3)
+      .clip();
+    doc.image(HEADSHOT, headshotX, top - 8, {
+      width: layout.headshotWidth,
+      height: layout.headshotHeight + 16,
+    });
+    doc.restore();
+  }
+
+  doc
+    .font("Helvetica-Bold")
+    .fontSize(22)
+    .fillColor(colors.foreground)
+    .text(site.name.toUpperCase(), left, top, {
+      width: textWidth,
+      characterSpacing: 1.6,
+      lineGap: 0,
+    });
+
+  doc
+    .font("Helvetica")
+    .fontSize(10)
+    .fillColor(colors.accent)
+    .text(site.tagline, left, doc.y + 2, { width: textWidth });
+
+  doc
+    .font("Helvetica")
+    .fontSize(8.5)
+    .fillColor(colors.muted)
+    .text(
+      `${site.email}  ·  ${site.phone}  ·  ${site.location}`,
+      left,
+      doc.y + 6,
+      { width: textWidth, lineGap: 1 },
+    );
+
+  doc
+    .font("Helvetica")
+    .fontSize(8.5)
+    .fillColor(colors.muted)
+    .text("autumnrheault.com", left, doc.y + 2, { width: textWidth });
+
+  doc
+    .font("Helvetica")
+    .fontSize(9)
+    .fillColor(colors.foreground)
+    .text(
+      `Age ${site.age}  ·  ${site.playingAge}  ·  ${site.height}`,
+      left,
+      doc.y + 6,
+      { width: textWidth },
+    );
+
+  const headerBottom = Math.max(doc.y + 4, top + layout.headshotHeight + 8);
+  doc.y = headerBottom;
+}
+
 const doc = new PDFDocument({
   size: "LETTER",
-  margins: { top: 48, bottom: 48, left: 54, right: 54 },
+  margins: { top: 44, bottom: 44, left: 50, right: 50 },
 });
 
 doc.pipe(fs.createWriteStream(OUTPUT));
 
-const contentWidth =
-  doc.page.width - doc.page.margins.left - doc.page.margins.right;
-
-doc
-  .font("Helvetica-Bold")
-  .fontSize(26)
-  .fillColor(colors.foreground)
-  .text(site.name.toUpperCase(), { align: "center", characterSpacing: 2 });
-
-doc
-  .font("Helvetica")
-  .fontSize(11)
-  .fillColor(colors.accent)
-  .text(site.tagline, { align: "center" });
-
-doc.moveDown(0.35);
-
-doc
-  .font("Helvetica")
-  .fontSize(9)
-  .fillColor(colors.muted)
-  .text(
-    `${site.email}  ·  ${site.phone}  ·  ${site.location}  ·  autumnrheault.com`,
-    { align: "center", lineGap: 1 },
-  );
-
-doc.moveDown(0.25);
-
-doc
-  .font("Helvetica")
-  .fontSize(9.5)
-  .fillColor(colors.foreground)
-  .text(
-    `Age ${site.age}  ·  ${site.playingAge}  ·  ${site.height}`,
-    { align: "center" },
-  );
-
+drawHeader(doc);
 sectionHeading(doc, "Education");
 
 for (const entry of site.training) {
@@ -143,11 +241,12 @@ sectionHeading(doc, "Theatre");
 
 doc
   .font("Helvetica-Bold")
-  .fontSize(10)
+  .fontSize(9.5)
   .fillColor(colors.foreground)
   .text("Norris Performing Arts Center");
 
-doc.moveDown(0.25);
+doc.moveDown(0.18);
+theatreTableHeader(doc);
 
 for (const credit of site.credits) {
   creditRow(doc, credit.show, credit.role, credit.year);
@@ -155,21 +254,16 @@ for (const credit of site.credits) {
 
 sectionHeading(doc, "Awards & Skills");
 
-for (const award of site.awards) {
-  doc
-    .font("Helvetica-Bold")
-    .fontSize(9.5)
-    .fillColor(colors.foreground)
-    .text(`• ${award}`, { lineGap: 2 });
-}
-
-doc.moveDown(0.2);
-
 doc
   .font("Helvetica")
-  .fontSize(9.5)
+  .fontSize(9)
   .fillColor(colors.foreground)
-  .text(site.skills.join("  ·  "), { lineGap: 3, width: contentWidth });
+  .text(
+    [`• ${site.awards[0]}`, site.skills.join("  ·  ")].join("\n"),
+    doc.page.margins.left,
+    doc.y,
+    { width: pageWidth(doc), lineGap: 4 },
+  );
 
 doc.end();
 

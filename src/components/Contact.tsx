@@ -9,9 +9,7 @@ export function Contact() {
           Booking & Inquiries
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
-          For auditions, casting inquiries, and representation, please use the
-          booking email below or contact {site.contactLabel.toLowerCase()} by
-          phone.
+          For auditions, casting, and representation inquiries.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <a
@@ -36,20 +34,26 @@ export function Contact() {
           </a>
           <div className="rounded-2xl border border-border bg-surface p-8">
             <p className="section-label mb-2">Social</p>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <span className="text-muted">Instagram: </span>
-                <span className="font-medium">
-                  {site.social.instagram || "[Coming soon]"}
-                </span>
-              </li>
-              <li>
-                <span className="text-muted">YouTube: </span>
-                <span className="font-medium">
-                  {site.social.youtube || "[Coming soon]"}
-                </span>
-              </li>
-            </ul>
+            {site.social.instagram || site.social.youtube ? (
+              <ul className="space-y-2 text-sm">
+                {site.social.instagram ? (
+                  <li>
+                    <span className="text-muted">Instagram: </span>
+                    <span className="font-medium">{site.social.instagram}</span>
+                  </li>
+                ) : null}
+                {site.social.youtube ? (
+                  <li>
+                    <span className="text-muted">YouTube: </span>
+                    <span className="font-medium">{site.social.youtube}</span>
+                  </li>
+                ) : null}
+              </ul>
+            ) : (
+              <p className="text-sm text-muted">
+                Social links available upon request.
+              </p>
+            )}
           </div>
         </div>
       </div>

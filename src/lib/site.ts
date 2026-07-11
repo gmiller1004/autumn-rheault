@@ -5,7 +5,7 @@ export const site = {
   playingAge: "Plays 9–13",
   height: `4'3"`,
   location: "Murrieta, California",
-  bio: "Autumn is a young triple-threat performer trained at Norris Performing Arts Center (NPAC) in acting, voice, and dance. She brings warmth, humor, and strong stage presence to every role.",
+  bio: "Autumn Rheault is a triple-threat musical theatre performer with training in acting, voice, and dance at Norris Performing Arts Center. She brings warmth, humor, and strong stage presence to every role.",
   email: "booking@autumnrheault.com",
   parentEmail: "kcwaters1014@gmail.com",
   phone: "714-336-1481",

@@ -10,7 +10,7 @@ export function Footer() {
           © {year} {site.name}. All rights reserved.
         </p>
         <p className="text-center md:text-right">
-          Youth performer · Acting · Voice · Dance
+          Musical Theatre · Acting · Voice · Dance
         </p>
       </div>
     </footer>

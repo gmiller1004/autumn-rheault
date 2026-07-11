@@ -8,6 +8,9 @@ export function About() {
         <h2 className="font-serif text-4xl font-semibold text-foreground">
           Training & Credits
         </h2>
+        <p className="mt-4 max-w-2xl text-muted">
+          Education, stage credits, awards, and special skills.
+        </p>
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
           <div>
             <h3 className="mb-6 text-sm font-semibold uppercase tracking-widest text-accent">

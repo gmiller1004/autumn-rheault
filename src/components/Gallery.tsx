@@ -52,8 +52,7 @@ export function Gallery() {
           Performance Gallery
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
-          Costume and character portraits from productions and training at Norris
-          Performing Arts Center. Tap any photo to enlarge.
+          Character and production portraits from musical theatre performances.
         </p>
 
         <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-4">

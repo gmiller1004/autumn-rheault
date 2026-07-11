@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   ),
   title: "Autumn Rheault | Triple Threat Performer",
   description:
-    "Official website of Autumn Rheault — youth triple-threat performer in acting, voice, and dance.",
+    "Autumn Rheault — triple-threat musical theatre performer. Demo reel, credits, résumé, and booking contact for casting and representation.",
   openGraph: {
     title: "Autumn Rheault | Triple Threat Performer",
     description:
-      "Official website of Autumn Rheault — youth triple-threat performer in acting, voice, and dance.",
+      "Autumn Rheault — triple-threat musical theatre performer. Demo reel, credits, résumé, and booking contact for casting and representation.",
     url: "/",
     siteName: "Autumn Rheault",
     locale: "en_US",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Autumn Rheault | Triple Threat Performer",
     description:
-      "Official website of Autumn Rheault — youth triple-threat performer in acting, voice, and dance.",
+      "Autumn Rheault — triple-threat musical theatre performer. Demo reel, credits, résumé, and booking contact for casting and representation.",
     images: ["/og-image.jpg"],
   },
 };

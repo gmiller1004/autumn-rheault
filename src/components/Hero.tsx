@@ -55,6 +55,7 @@ export function Hero() {
               alt={`${site.name} — theatrical headshot`}
               fill
               priority
+              unoptimized
               sizes="(max-width: 768px) 100vw, 480px"
               className="object-cover object-top"
             />
