@@ -4,8 +4,11 @@ import { site } from "@/lib/site";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(124,45,54,0.08),_transparent_55%)]" />
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center md:py-24">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(124,45,54,0.08),_transparent_55%)]"
+      />
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center md:py-24">
         <div className="order-2 md:order-1">
           <p className="section-label mb-4">{site.tagline}</p>
           <h1 className="font-serif text-5xl font-semibold leading-tight text-foreground md:text-6xl lg:text-7xl">
