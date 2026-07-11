@@ -25,8 +25,25 @@ export const metadata: Metadata = {
     title: "Autumn Rheault | Triple Threat Performer",
     description:
       "Official website of Autumn Rheault — youth triple-threat performer in acting, voice, and dance.",
-    images: [{ url: "/headshot.jpg", width: 1200, height: 1500, alt: "Autumn Rheault headshot" }],
+    url: "/",
+    siteName: "Autumn Rheault",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Autumn Rheault — Triple Threat Performer",
+      },
+    ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Autumn Rheault | Triple Threat Performer",
+    description:
+      "Official website of Autumn Rheault — youth triple-threat performer in acting, voice, and dance.",
+    images: ["/og-image.jpg"],
   },
 };
 

@@ -24,8 +24,9 @@ export function Resume() {
               <ul className="mt-4 space-y-1 text-sm text-muted">
                 <li>Height: {site.height}</li>
                 <li>Location: {site.location}</li>
+                <li>Email: {site.email}</li>
                 <li>
-                  {site.contactLabel}: {site.email} · {site.phone}
+                  {site.contactLabel}: {site.phone}
                 </li>
               </ul>
             </div>

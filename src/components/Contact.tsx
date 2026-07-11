@@ -9,15 +9,16 @@ export function Contact() {
           Booking & Inquiries
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
-          For auditions, casting inquiries, and representation, please contact{" "}
-          {site.contactLabel.toLowerCase()} using the information below.
+          For auditions, casting inquiries, and representation, please use the
+          booking email below or contact {site.contactLabel.toLowerCase()} by
+          phone.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <a
             href={`mailto:${site.email}`}
             className="group rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-accent/30"
           >
-            <p className="section-label mb-2">{site.contactLabel}</p>
+            <p className="section-label mb-2">Booking</p>
             <p className="text-sm text-muted">Email</p>
             <p className="mt-1 text-lg font-semibold text-foreground group-hover:text-accent">
               {site.email}

@@ -6,7 +6,8 @@ export const site = {
   height: `4'3"`,
   location: "Murrieta, California",
   bio: "Autumn is a young triple-threat performer trained at Norris Performing Arts Center (NPAC) in acting, voice, and dance. She brings warmth, humor, and strong stage presence to every role.",
-  email: "kcwaters1014@gmail.com",
+  email: "booking@autumnrheault.com",
+  parentEmail: "kcwaters1014@gmail.com",
   phone: "714-336-1481",
   contactLabel: "Parent / Guardian",
   /** Optional Vimeo/YouTube embed URL (leave empty if using Vercel Blob MP4). */

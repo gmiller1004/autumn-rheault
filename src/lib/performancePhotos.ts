@@ -44,10 +44,6 @@ export const performancePhotos = [
     alt: "Autumn Rheault — performance photo",
   },
   {
-    src: "/performance/img_0082.jpg",
-    alt: "Autumn Rheault — performance photo",
-  },
-  {
     src: "/performance/img_0014.jpg",
     alt: "Autumn Rheault — performance photo",
   },

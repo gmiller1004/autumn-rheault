@@ -45,5 +45,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# original full-size performance uploads (web versions live in public/performance/)
-/public/*.JPG
+# original full-size camera uploads at public root (optimized copies live elsewhere)
+/public/IMG_*
+/public/JY0A*
+/public/*.CR2
