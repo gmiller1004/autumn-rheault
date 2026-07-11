@@ -33,7 +33,7 @@ export function Resume() {
             {hasResume ? (
               <a
                 href={site.resumeUrl}
-                download
+                download="Autumn-Rheault-Resume.pdf"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-light"
               >
                 Download PDF

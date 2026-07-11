@@ -12,54 +12,71 @@ export const site = {
   contactLabel: "Parent / Guardian",
   /** Optional Vimeo/YouTube embed URL (leave empty if using Vercel Blob MP4). */
   reelEmbedUrl: "",
-  resumeUrl: "",
+  resumeUrl: "/resume.pdf",
   social: {
     instagram: "",
     youtube: "",
   },
   training: [
     {
-      discipline: "Voice",
+      discipline: "Norris Performing Arts Center",
       detail:
-        "4+ years private voice lessons · Norris Performing Arts Center (NPAC)",
+        "August 2023–Present · Triple Threat Competition Team · Acting and vocal classes · Dance: Broadway Jazz, Contemporary Jazz, Tap, Hip-Hop, Lyrical",
     },
     {
-      discipline: "Dance",
+      discipline: "Taylor Kunysz",
       detail:
-        "3 years tap, jazz, and hip hop · Norris Performing Arts Center (NPAC)",
-    },
-    {
-      discipline: "Acting",
-      detail:
-        "3 years group acting classes, 1 year private acting · Norris Performing Arts Center (NPAC)",
-    },
-    {
-      discipline: "Piano",
-      detail: "4+ years private piano lessons (intermediate)",
+        "August 2022–Present · Private voice coach and piano instructor · Music theory",
     },
   ],
   credits: [
     {
-      show: "[Show Title]",
-      role: "[Role]",
-      venue: "[Theater / Company]",
-      year: "[Year]",
+      show: "Alice in Wonderland Jr.",
+      role: "4 of Hearts",
+      venue: "Norris Performing Arts Center",
+      year: "May 2026",
     },
     {
-      show: "[Show Title]",
-      role: "[Role]",
-      venue: "[Theater / Company]",
-      year: "[Year]",
+      show: "Shrek Jr.",
+      role: "Duloc Dancer, Skeleton Dancer, Chorus",
+      venue: "Norris Performing Arts Center",
+      year: "May 2025",
+    },
+    {
+      show: "Frozen Jr.",
+      role: "Hidden Folk, Chorus",
+      venue: "Norris Performing Arts Center",
+      year: "December 2024",
+    },
+    {
+      show: "Matilda Jr.",
+      role: "Matilda",
+      venue: "Norris Performing Arts Center",
+      year: "October 2024",
+    },
+    {
+      show: "Seussical Jr.",
+      role: "Bird Girl, Chorus",
+      venue: "Norris Performing Arts Center",
+      year: "July 2024",
+    },
+    {
+      show: "Annie Jr.",
+      role: "Orphan Girl, Chorus",
+      venue: "Norris Performing Arts Center",
+      year: "March 2024",
+    },
+    {
+      show: "Willy Wonka Junior",
+      role: "Candy Kid, Oompa Loompa",
+      venue: "Norris Performing Arts Center",
+      year: "October 2023",
     },
   ],
+  awards: ["Musical Theater Triple Threat Award"],
   skills: [
-    "Acting",
-    "Musical Theater",
-    "Voice",
-    "Intermediate Piano",
-    "Tap",
-    "Jazz",
-    "Hip Hop",
+    "Intermediate Pianist",
+    "Cartwheel, Round-Off & Handstand",
   ],
 } as const;
 

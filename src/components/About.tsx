@@ -11,7 +11,7 @@ export function About() {
         <div className="mt-12 grid gap-12 lg:grid-cols-2">
           <div>
             <h3 className="mb-6 text-sm font-semibold uppercase tracking-widest text-accent">
-              Training
+              Education
             </h3>
             <ul className="space-y-5">
               {site.training.map((item) => (
@@ -32,7 +32,7 @@ export function About() {
             <ul className="space-y-5">
               {site.credits.map((credit) => (
                 <li
-                  key={`${credit.show}-${credit.year}`}
+                  key={`${credit.show}-${credit.role}`}
                   className="border-b border-border pb-5 last:border-0"
                 >
                   <p className="font-semibold text-foreground">
@@ -47,20 +47,34 @@ export function About() {
             </ul>
           </div>
         </div>
-        <div className="mt-14">
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">
-            Special Skills
-          </h3>
-          <ul className="flex flex-wrap gap-2">
-            {site.skills.map((skill) => (
-              <li
-                key={skill}
-                className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground"
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-14 grid gap-10 md:grid-cols-2">
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">
+              Awards
+            </h3>
+            <ul className="space-y-3">
+              {site.awards.map((award) => (
+                <li key={award} className="text-foreground">
+                  {award}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">
+              Special Skills
+            </h3>
+            <ul className="flex flex-wrap gap-2">
+              {site.skills.map((skill) => (
+                <li
+                  key={skill}
+                  className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
