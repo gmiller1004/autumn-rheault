@@ -33,6 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# demo reel source files (host via Vercel Blob, not git)
+*.mp4
+*.mov
+/public/*.mp4
+
 # vercel
 .vercel
 

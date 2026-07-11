@@ -9,7 +9,8 @@ export const site = {
   email: "kcwaters1014@gmail.com",
   phone: "714-336-1481",
   contactLabel: "Parent / Guardian",
-  reelUrl: "",
+  /** Optional Vimeo/YouTube embed URL (leave empty if using Vercel Blob MP4). */
+  reelEmbedUrl: "",
   resumeUrl: "",
   social: {
     instagram: "",

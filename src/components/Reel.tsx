@@ -1,7 +1,16 @@
+import {
+  getReelEmbedUrl,
+  getReelVideoUrl,
+  hasReel,
+  isEmbedReel,
+  reelPoster,
+} from "@/lib/reel";
 import { site } from "@/lib/site";
 
 export function Reel() {
-  const hasReel = Boolean(site.reelUrl);
+  const videoUrl = getReelVideoUrl();
+  const embedUrl = getReelEmbedUrl();
+  const showReel = hasReel();
 
   return (
     <section id="reel" className="py-20">
@@ -11,13 +20,29 @@ export function Reel() {
           Performance Reel
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
-          A showcase of acting, singing, and dance. Updated reel coming soon.
+          {showReel
+            ? "A showcase of acting, singing, and dance from recent performances."
+            : "A showcase of acting, singing, and dance. Updated reel coming soon."}
         </p>
         <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
-          {hasReel ? (
+          {videoUrl ? (
+            <div className="aspect-video bg-black">
+              <video
+                className="h-full w-full"
+                controls
+                playsInline
+                preload="metadata"
+                poster={reelPoster}
+                aria-label={`${site.name} demo reel`}
+              >
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+            </div>
+          ) : embedUrl && isEmbedReel(embedUrl) ? (
             <div className="aspect-video">
               <iframe
-                src={site.reelUrl}
+                src={embedUrl}
                 title={`${site.name} demo reel`}
                 className="h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
