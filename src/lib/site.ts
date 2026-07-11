@@ -1,12 +1,14 @@
 export const site = {
   name: "Autumn Rheault",
   tagline: "Triple Threat Performer",
+  age: "12",
   playingAge: "Plays 9–13",
-  age: "[Age]",
-  height: '[Height — e.g. 4\'10"]',
-  location: "[City, State]",
-  bio: "Autumn is a young triple-threat performer with training in acting, voice, and dance. She brings warmth, humor, and strong stage presence to every role.",
-  email: "booking@autumnrheault.com",
+  height: `4'3"`,
+  location: "Murrieta, California",
+  bio: "Autumn is a young triple-threat performer trained at Norris Performing Arts Center (NPAC) in acting, voice, and dance. She brings warmth, humor, and strong stage presence to every role.",
+  email: "kcwaters1014@gmail.com",
+  phone: "714-336-1481",
+  contactLabel: "Parent / Guardian",
   reelUrl: "",
   resumeUrl: "",
   social: {
@@ -14,9 +16,25 @@ export const site = {
     youtube: "",
   },
   training: [
-    { discipline: "Acting", detail: "[Studio / instructor — placeholder]" },
-    { discipline: "Voice", detail: "[Studio / instructor — placeholder]" },
-    { discipline: "Dance", detail: "[Styles & studio — placeholder]" },
+    {
+      discipline: "Voice",
+      detail:
+        "4+ years private voice lessons · Norris Performing Arts Center (NPAC)",
+    },
+    {
+      discipline: "Dance",
+      detail:
+        "3 years tap, jazz, and hip hop · Norris Performing Arts Center (NPAC)",
+    },
+    {
+      discipline: "Acting",
+      detail:
+        "3 years group acting classes, 1 year private acting · Norris Performing Arts Center (NPAC)",
+    },
+    {
+      discipline: "Piano",
+      detail: "4+ years private piano lessons (intermediate)",
+    },
   ],
   credits: [
     {
@@ -35,15 +53,17 @@ export const site = {
   skills: [
     "Acting",
     "Musical Theater",
-    "Jazz Dance",
-    "Ballet",
+    "Voice",
+    "Intermediate Piano",
     "Tap",
-    "Piano",
+    "Jazz",
+    "Hip Hop",
   ],
 } as const;
 
 export const navItems = [
   { label: "About", href: "#about" },
+  { label: "On Stage", href: "#gallery" },
   { label: "Reel", href: "#reel" },
   { label: "Résumé", href: "#resume" },
   { label: "Contact", href: "#contact" },

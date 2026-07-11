@@ -16,8 +16,10 @@ export function Hero() {
           </p>
           <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
             <div>
-              <dt className="section-label mb-1">Playing Age</dt>
-              <dd className="font-medium">{site.playingAge}</dd>
+              <dt className="section-label mb-1">Age</dt>
+              <dd className="font-medium">
+                {site.age} · {site.playingAge}
+              </dd>
             </div>
             <div>
               <dt className="section-label mb-1">Height</dt>

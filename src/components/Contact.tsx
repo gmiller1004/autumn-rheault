@@ -9,18 +9,28 @@ export function Contact() {
           Booking & Inquiries
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
-          For auditions, casting inquiries, and representation, please reach out
-          to the contact below. Parent or guardian cc preferred for all
-          correspondence.
+          For auditions, casting inquiries, and representation, please contact{" "}
+          {site.contactLabel.toLowerCase()} using the information below.
         </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           <a
             href={`mailto:${site.email}`}
             className="group rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-accent/30"
           >
-            <p className="section-label mb-2">Email</p>
-            <p className="text-lg font-semibold text-foreground group-hover:text-accent">
+            <p className="section-label mb-2">{site.contactLabel}</p>
+            <p className="text-sm text-muted">Email</p>
+            <p className="mt-1 text-lg font-semibold text-foreground group-hover:text-accent">
               {site.email}
+            </p>
+          </a>
+          <a
+            href={`tel:${site.phone.replace(/-/g, "")}`}
+            className="group rounded-2xl border border-border bg-surface p-8 transition-colors hover:border-accent/30"
+          >
+            <p className="section-label mb-2">{site.contactLabel}</p>
+            <p className="text-sm text-muted">Phone</p>
+            <p className="mt-1 text-lg font-semibold text-foreground group-hover:text-accent">
+              {site.phone}
             </p>
           </a>
           <div className="rounded-2xl border border-border bg-surface p-8">

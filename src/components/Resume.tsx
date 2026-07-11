@@ -19,12 +19,14 @@ export function Resume() {
             <div>
               <p className="font-serif text-2xl font-semibold">{site.name}</p>
               <p className="mt-1 text-muted">
-                {site.tagline} · {site.playingAge}
+                {site.tagline} · Age {site.age} · {site.playingAge}
               </p>
               <ul className="mt-4 space-y-1 text-sm text-muted">
-                <li>Age: {site.age}</li>
                 <li>Height: {site.height}</li>
                 <li>Location: {site.location}</li>
+                <li>
+                  {site.contactLabel}: {site.email} · {site.phone}
+                </li>
               </ul>
             </div>
             {hasResume ? (
