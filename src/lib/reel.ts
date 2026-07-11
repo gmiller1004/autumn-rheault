@@ -19,7 +19,13 @@ export function isEmbedReel(url: string): boolean {
 export function normalizeEmbedUrl(url: string): string {
   const vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if (vimeoMatch) {
-    return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+    const params = new URLSearchParams({
+      byline: "0",
+      portrait: "0",
+      title: "0",
+      dnt: "1",
+    });
+    return `https://player.vimeo.com/video/${vimeoMatch[1]}?${params.toString()}`;
   }
 
   const youtubeMatch = url.match(
