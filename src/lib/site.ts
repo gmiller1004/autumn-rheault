@@ -10,8 +10,8 @@ export const site = {
   parentEmail: "kcwaters1014@gmail.com",
   phone: "714-336-1481",
   contactLabel: "Parent / Guardian",
-  /** Optional Vimeo/YouTube embed URL (leave empty if using Vercel Blob MP4). */
-  reelEmbedUrl: "",
+  /** Vimeo or YouTube URL (share link or embed URL). Preferred over Blob MP4. */
+  reelEmbedUrl: "https://vimeo.com/1208986513",
   resumeUrl: "/resume.pdf",
   social: {
     instagram: "",

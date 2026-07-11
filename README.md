@@ -17,15 +17,26 @@ Edit placeholders in [`src/lib/site.ts`](src/lib/site.ts):
 
 - Bio, age, height, location
 - Training, credits, skills
-- `reelEmbedUrl` — optional Vimeo/YouTube embed URL
+- `reelEmbedUrl` — Vimeo or YouTube URL (recommended; adaptive streaming)
 - `resumeUrl` — path to PDF in `/public` (e.g. `/resume.pdf`)
 - Contact email and social links
 
 Replace `/public/headshot.jpg` when updating the primary headshot.
 
-## Demo reel (Vercel Blob — recommended for ~150MB files)
+## Demo reel (Vimeo — recommended)
 
-Do **not** commit the MP4 to GitHub (100MB file limit). Host on **Vercel Blob** instead:
+1. Upload to [Vimeo](https://vimeo.com) (public or unlisted)
+2. Copy the video link (e.g. `https://vimeo.com/123456789`)
+3. Paste it in `reelEmbedUrl` in [`src/lib/site.ts`](src/lib/site.ts)
+4. Commit and deploy
+
+The site embeds the Vimeo player with adaptive streaming — no buffering on slow connections.
+
+If `reelEmbedUrl` is set, it takes priority over the Blob MP4 fallback below.
+
+## Demo reel fallback (Vercel Blob)
+
+For direct MP4 hosting without Vimeo:
 
 1. Install Vercel CLI if needed: `npm i -g vercel`
 2. Log in: `vercel login`

@@ -2,14 +2,13 @@ import {
   getReelEmbedUrl,
   getReelVideoUrl,
   hasReel,
-  isEmbedReel,
   reelPoster,
 } from "@/lib/reel";
 import { site } from "@/lib/site";
 
 export function Reel() {
-  const videoUrl = getReelVideoUrl();
   const embedUrl = getReelEmbedUrl();
+  const videoUrl = getReelVideoUrl();
   const showReel = hasReel();
 
   return (
@@ -25,7 +24,17 @@ export function Reel() {
             : "Acting, voice, and dance highlights. Contact booking for current footage."}
         </p>
         <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
-          {videoUrl ? (
+          {embedUrl ? (
+            <div className="aspect-video">
+              <iframe
+                src={embedUrl}
+                title={`${site.name} demo reel`}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : videoUrl ? (
             <div className="aspect-video bg-black">
               <video
                 className="h-full w-full"
@@ -38,16 +47,6 @@ export function Reel() {
                 <source src={videoUrl} type="video/mp4" />
                 Your browser does not support embedded video.
               </video>
-            </div>
-          ) : embedUrl && isEmbedReel(embedUrl) ? (
-            <div className="aspect-video">
-              <iframe
-                src={embedUrl}
-                title={`${site.name} demo reel`}
-                className="h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
             </div>
           ) : (
             <div className="flex aspect-video flex-col items-center justify-center gap-4 bg-[linear-gradient(135deg,#fffdf9_0%,#f3ebe3_100%)] px-6 text-center">
