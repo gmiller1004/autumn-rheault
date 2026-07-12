@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PhotoGallery } from "@/components/PhotoGallery";
-import { headshots } from "@/lib/headshots";
+import { HeadshotsGallery } from "@/components/HeadshotsGallery";
+import { headshotIntro, headshots } from "@/lib/headshots";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,8 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function HeadshotsPage() {
-  const looks = [...new Set(headshots.map((photo) => photo.look))];
-
   return (
     <div className="min-h-full bg-background">
       <header className="border-b border-border bg-surface">
@@ -38,16 +36,14 @@ export default function HeadshotsPage() {
         <h1 className="font-serif text-4xl font-semibold text-foreground">
           Headshot Gallery
         </h1>
-        <p className="mt-4 max-w-2xl text-muted">
-          All 18 finished theatrical headshots from the July 2026 session —{" "}
-          {looks.join(", ")}.
-        </p>
 
-        <PhotoGallery
-          photos={headshots}
-          aspectClass="aspect-[4/5]"
-          viewerLabel="Headshot viewer"
-        />
+        <div className="mt-6 max-w-3xl space-y-4 text-muted">
+          <p>{headshotIntro.lead}</p>
+          <p>{headshotIntro.casting}</p>
+          <p>{headshotIntro.note}</p>
+        </div>
+
+        <HeadshotsGallery photos={headshots} />
       </main>
     </div>
   );
