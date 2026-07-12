@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "generate:resume": "tsx scripts/generate-resume.ts",
-    "optimize:headshot": "tsx scripts/optimize-headshot.ts"
+    "optimize:headshot": "tsx scripts/optimize-headshot.ts",
+    "optimize:headshots": "tsx scripts/optimize-headshots.ts"
   },
   "dependencies": {
     "next": "16.2.10",
